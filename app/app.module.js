@@ -17,12 +17,29 @@ var app_component_1 = require('./app.component');
 var dropdown_component_1 = require('./dropdown/dropdown.component');
 var uploaddoc_component_1 = require('./uploadDoc/uploaddoc.component');
 var uploaddocform_component_1 = require('./uploadDocForm/uploaddocform.component');
+var router_1 = require('@angular/router');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [ng_bootstrap_1.NgbModule.forRoot(), platform_browser_1.BrowserModule, forms_1.FormsModule],
+            imports: [ng_bootstrap_1.NgbModule.forRoot(), platform_browser_1.BrowserModule, forms_1.FormsModule,
+                router_1.RouterModule.forRoot([
+                    {
+                        path: 'documents',
+                        component: uploaddoc_component_1.UploadDocComponent
+                    },
+                    {
+                        path: 'upload',
+                        component: uploaddocform_component_1.UploadDocFormComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/documents',
+                        pathMatch: 'full'
+                    }
+                ])
+            ],
             declarations: [app_component_1.AppComponent, dropdown_component_1.NgbdDropdownBasic, uploaddoc_component_1.UploadDocComponent, uploaddocform_component_1.UploadDocFormComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [document_service_1.DocumentService]

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import  { UploadDoc } from './uploadDoc/uploaddoc.model';
 @Component({
   selector: 'my-app',
-  template: `<upload></upload>`
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent  {
 

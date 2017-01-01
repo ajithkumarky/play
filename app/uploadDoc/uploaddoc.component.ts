@@ -20,13 +20,16 @@ constructor(private documentService: DocumentService) { }
 
 
   uploadDocs: UploadDoc[];
+  uploadStuff: UploadDoc;
 
 
   getDocuments(): void {
-    this.uploadDocs = this.documentService.getDocuments();
+     this.documentService.getDocumentsSlowly().then(uploadDocs=>this.uploadDocs = uploadDocs);
   }
 
   showform() {
+    this.uploadStuff= new UploadDoc(1, 'Black book', 'Ajith Kumar', 'uploading', 10);
+    this.documentService.addDocument(this.uploadStuff).then(uploadDocs=>this.uploadDocs = uploadDocs);
 
   }
 }

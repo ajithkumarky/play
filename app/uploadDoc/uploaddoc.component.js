@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var uploaddoc_model_1 = require('./uploaddoc.model');
 var document_service_1 = require('../document.service');
 var UploadDocComponent = (function () {
     function UploadDocComponent(documentService) {
@@ -18,9 +19,13 @@ var UploadDocComponent = (function () {
         this.getDocuments();
     };
     UploadDocComponent.prototype.getDocuments = function () {
-        this.uploadDocs = this.documentService.getDocuments();
+        var _this = this;
+        this.documentService.getDocumentsSlowly().then(function (uploadDocs) { return _this.uploadDocs = uploadDocs; });
     };
     UploadDocComponent.prototype.showform = function () {
+        var _this = this;
+        this.uploadStuff = new uploaddoc_model_1.UploadDoc(1, 'Black book', 'Ajith Kumar', 'uploading', 10);
+        this.documentService.addDocument(this.uploadStuff).then(function (uploadDocs) { return _this.uploadDocs = uploadDocs; });
     };
     UploadDocComponent = __decorate([
         core_1.Component({

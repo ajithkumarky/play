@@ -9,12 +9,28 @@ import { NgbdDropdownBasic } from './dropdown/dropdown.component';
 import { UploadDocComponent } from './uploadDoc/uploaddoc.component';
 import { UploadDocFormComponent } from './uploadDocForm/uploaddocform.component';
 
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports:      [NgbModule.forRoot(), BrowserModule , FormsModule],
-  declarations: [ AppComponent , NgbdDropdownBasic, UploadDocComponent,UploadDocFormComponent],
-  bootstrap:    [ AppComponent ],
-  providers: [ DocumentService ]
+    imports: [NgbModule.forRoot(), BrowserModule, FormsModule,
+        RouterModule.forRoot([
+            {
+                path: 'documents',
+                component: UploadDocComponent
+            },
+          {
+                path: 'upload',
+                component: UploadDocFormComponent
+            },
+            {
+                path: '',
+                redirectTo: '/documents',
+                pathMatch: 'full'
+            }
+        ])
+    ],
+    declarations: [AppComponent, NgbdDropdownBasic, UploadDocComponent, UploadDocFormComponent],
+    bootstrap: [AppComponent],
+    providers: [DocumentService]
 })
 export class AppModule { }

@@ -14,7 +14,17 @@ var DocumentService = (function () {
     function DocumentService() {
     }
     DocumentService.prototype.getDocuments = function () {
-        return mock_documents_1.UPLOADDOCS;
+        return Promise.resolve(mock_documents_1.UPLOADDOCS);
+    };
+    DocumentService.prototype.addDocument = function (uploadDoc) {
+        mock_documents_1.UPLOADDOCS.push(uploadDoc);
+        return Promise.resolve(mock_documents_1.UPLOADDOCS);
+    };
+    DocumentService.prototype.getDocumentsSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            setTimeout(function () { return resolve(_this.getDocuments()); }, 300);
+        });
     };
     DocumentService = __decorate([
         core_1.Injectable(), 
