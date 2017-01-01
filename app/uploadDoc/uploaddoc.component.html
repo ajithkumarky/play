@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="./uploaddoc-style.css">
+
+<h1 align='center'>Minimally Styled Document Uploader</h1>
+    <table class='table table-striped'>
+    <tr><th>Id</th><th>Client Name</th><th>Document name</th> <th>Status</th><th>Upload Status</th><th></th></tr>
+    <tr *ngFor = "let doc of uploadDocs" [ngClass]="['success']"><td>{{doc.id}}</td> <td>{{doc.clientName}}</td> <td>{{doc.documentName}}</td>  <td>{{doc.status}}</td><td><ngb-progressbar max=100 animated=true value={{doc.uploadValue}}></ngb-progressbar></td>
+    <td align='middle'>
+<ngbd-dropdown-basic [id]="doc.id"></ngbd-dropdown-basic>
+    </td></tr>
+
+    </table>
+ <div align='center'> <button type="button" class="btn btn-default btn-lg" (click)="showform()">Upload</button> </div>
+ <br>
+    <uploadform></uploadform>
