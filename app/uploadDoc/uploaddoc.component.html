@@ -10,4 +10,7 @@
 
     </table>
  <div align='center'> <button type="button" class="btn btn-default btn-lg" (click)="showform()">Upload</button> </div>
- <br>
+
+ <div  *ngIf="formVisible == true">
+    <uploadform (onComplete)="hideform()"></uploadform>
+</div>

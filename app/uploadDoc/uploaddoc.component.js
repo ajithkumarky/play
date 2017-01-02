@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var uploaddoc_model_1 = require('./uploaddoc.model');
 var document_service_1 = require('../document.service');
 var UploadDocComponent = (function () {
     function UploadDocComponent(documentService) {
         this.documentService = documentService;
+        this.formVisible = false;
     }
     UploadDocComponent.prototype.ngOnInit = function () {
         this.getDocuments();
@@ -23,9 +23,10 @@ var UploadDocComponent = (function () {
         this.documentService.getDocumentsSlowly().then(function (uploadDocs) { return _this.uploadDocs = uploadDocs; });
     };
     UploadDocComponent.prototype.showform = function () {
-        var _this = this;
-        this.uploadStuff = new uploaddoc_model_1.UploadDoc(1, 'Black book', 'Ajith Kumar', 'uploading', 10);
-        this.documentService.addDocument(this.uploadStuff).then(function (uploadDocs) { return _this.uploadDocs = uploadDocs; });
+        this.formVisible = true;
+    };
+    UploadDocComponent.prototype.hideform = function () {
+        this.formVisible = false;
     };
     UploadDocComponent = __decorate([
         core_1.Component({

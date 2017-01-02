@@ -21,15 +21,18 @@ constructor(private documentService: DocumentService) { }
 
   uploadDocs: UploadDoc[];
   uploadStuff: UploadDoc;
-
+  formVisible=false;
 
   getDocuments(): void {
      this.documentService.getDocumentsSlowly().then(uploadDocs=>this.uploadDocs = uploadDocs);
   }
 
   showform() {
-    this.uploadStuff= new UploadDoc(1, 'Black book', 'Ajith Kumar', 'uploading', 10);
-    this.documentService.addDocument(this.uploadStuff).then(uploadDocs=>this.uploadDocs = uploadDocs);
+    this.formVisible=true;
+  }
 
+  hideform()
+  {
+    this.formVisible=false;
   }
 }

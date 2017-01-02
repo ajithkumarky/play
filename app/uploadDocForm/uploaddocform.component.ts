@@ -1,21 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {UploadDoc} from '../UploadDoc/uploaddoc.model';
+import { DocumentService } from '../document.service';
 
 @Component({
   moduleId: module.id,
   selector: 'uploadform',
-  templateUrl: 'uploadddocform.component.html'
+  templateUrl: 'uploadddocform.component.html',
+    providers: [DocumentService]
 })
 
 export class UploadDocFormComponent {
+
+@Output() onComplete = new EventEmitter<boolean>();
+
   model = new UploadDoc(1, 'Black book', 'Ajith Kumar', 'uploading', 10);
-
-
+constructor(private documentService: DocumentService) { }
+  uploadStuff: UploadDoc;
   submitted = false;
   onSubmit() { this.submitted = true; }
 
   uploadDoc() {
-    this.model = new UploadDoc(1, '', '', 'uploading', 10);
+
+    this.uploadStuff= new UploadDoc(1, this.model.documentName, this.model.clientName, 'Uploading', 0);
+    this.documentService.addDocument(this.uploadStuff).then();
+    this.onComplete.emit(true);
   }
 
   fileChange(event:any) {
